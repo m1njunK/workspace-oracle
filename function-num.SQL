@@ -1,0 +1,38 @@
+-- 반올림
+-- ROUND(숫자, 반올림위치)
+SELECT ROUND(1234.5678);
+SELECT ROUND(1234.5678, 0);
+SELECT ROUND(1234.5678, 1);
+SELECT ROUND(1234.5678, 2);
+SELECT ROUND(1234.5678, -1);
+SELECT ROUND(1234.5678, -2);
+
+-- 버림 TRUNC(숫자,버림 위치)
+SELECT TRUNC(1234.5678);
+SELECT TRUNC(1234.5678,0);
+SELECT TRUNC(1234.5678,1);
+SELECT TRUNC(1234.5678,2);
+SELECT TRUNC(1234.5678,-1);
+SELECT TRUNC(1234.5678,-2);
+
+-- 정수를 반환하는 함수 CEIL (숫자 올림), FLOOR (숫자 버림)
+SELECT CEIL(3.14);  -- 천장
+SELECT FLOOR(3.14); -- 바닥
+SELECT CEIL(-3.14); -- 음수의 경우, 높은 수
+SELECT FLOOR(-3.14);    -- 낮은 수
+
+-- 나머지 구하기 MOD(숫자, 나눌 숫자)
+SELECT MOD(15,6);   -- 6*2(몫) = 12 + 3 (나머지)
+SELECT MOD(15,2);   -- 홀수는 나머지 1
+SELECT MOD(14,2);   -- 짝수는 나머지 0
+
+-- 5가지 함수 ROUND, TRUNC, CEIL, FLOOR, MOD
+-- 연습문제
+SELECT * FROM EMP;
+-- 월급에서 평균 근무일수가 21.5 일당 DAY_PAY 소수점 세번째 자리에서 버림
+-- 시급 하루 근무시간 8시간 TIME_PAY 소수점 두번째 자리에서 반올림
+SELECT EMPNO,ENAME,SAL,
+    TRUNC(SAL/21.5,2) AS DAY_PAY, 
+    ROUND(SAL/21.5/8,1) AS TIME_PAY 
+    FROM EMP;
+

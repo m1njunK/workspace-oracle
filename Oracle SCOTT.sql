@@ -1,0 +1,23 @@
+-- DQL (DATA QUERY LANGUAGE)
+-- SELECT문
+-- 1. SELECTION : 행 단위 선택
+-- 2. PROJECTION : 열 단위 선택
+-- 3. JOIN : 두 개 이상의 테이블 사용하여 조회
+DESC EMP;
+-- table 구성 EMP : 직원의 정보
+DESC dept;
+-- DEPT : 부서 정보
+DESC salgrade;
+-- SALGRADE : 급여 등급
+
+-- SELECT절과 FROM절
+SELECT * FROM EMP;
+SELECT EMPNO, ENAME, DEPTNO FROM EMP;
+
+-- 중복 데이터 제거 DISTINCT
+-- SELECT DISTINCT
+SELECT DISTINCT DEPTNO FROM EMP;
+SELECT ALL deptNO FROM emp;
+-- 별칭 설정하기
+SELECT ENAME, SAL, SAL*12+COMM AS ANNSAL, COMM
+FROM EMP;
