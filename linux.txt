@@ -1,0 +1,188 @@
+bash
+# 터미널 화면을 깨끗하게
+clear
+
+### 경로 ###
+
+# 현재 내가 위치한 경로 (Print Working Directory)
+pwd
+
+# 경로 이동하기 (Change Directory)
+# 한 단계 상위 폴더로
+cd ..
+
+# 특정 디렉토리로 
+cd ubuntu
+
+# 루트(최상위) 디렉토리로
+cd /
+
+# HOME 디렉토리로
+cd ~
+
+
+### 파일 및 디렉토리 목록 보기 ###
+# 목록 보기 (List Show)
+ls
+
+# 자세히보기 (ls long)
+ls -l
+
+# 도움말 보기
+ls --help
+
+# 숨김파일(.으로 시작하는 ignore 파일이나 디렉토리)까지 모두 보기
+ls -a
+
+# 모두 보고, 자세히도 보고
+ls -al
+
+# 리스트 보기 약어
+l
+
+# 리스트 자세히 보기 약어
+ll
+
+### 디렉토리 및 파일 제어 ###
+
+# 디렉토리 만들기(MaKe DIRectorey)
+mkdir hello
+
+# 파일 만들기 (또는 접근 시간 변경)
+touch hello.txt
+
+# 지우기(ReMove) 도움말
+rm --help
+
+# 파일 지우기
+rm hello.txt
+
+# 디렉토리 지우기 (재귀적 recursive)
+rm -r hello/
+
+# 재귀적이고 강제로 지우기 (recursive and force)
+rm -rf hello/
+
+
+# 복사하기 (CoPy)  // touch a.txt
+cp a.txt b.txt
+
+# 이동하기 (MoVe)  // mkdir user
+mv b.txt user/
+
+# 이름변경하기
+mv a.txt c.txt
+
+# 연결 링크 만들기 (LiNk)
+ln -s a.txt a-link.txt
+
+### 패키지 관리 시스템 APT (데비앙, 우분투 계열) ###
+apt
+
+# 패키지 관리자 업데이트 (권한 없음)
+apt update
+
+# 현재 사용자 확인
+whoami
+
+# 최상위 관리자 권한으로 패키지 관리자 업데이트
+sudo apt update
+
+# apt 패키지 목록 조회 tomcat 키워드로
+apt-cache search tomcat
+
+# 위 결과에서 정규식으로 tomcat이라는 문자열이 포함된 내용만 정규식 찾기
+# (|) 파이프라인으로 연결
+apt-cache search tomcat | grep tomcat
+
+# apt 패키지 전체 목록 보기
+apt list
+
+# apt 전체 목록에서 tomcat 찾기
+apt list | grep tomcat
+
+# 관리자 권한으로 tomcat9 패키지 설치
+sudo apt install tomcat9
+
+# 리눅스 네트워크 도구 설치하기
+# -y : Yes/No 질문에서 무조건 y로 설치하기
+sudo apt install -y net-tools
+
+# 네트워크 상태 확인하기
+netstat
+
+# 네트워크 상태
+# -n 포트 번호(number port), 
+# -l 연결상태(listen),
+# -p 프로그램(pid),
+# -t tcp프로토콜 확인하기
+netstat -nlpt
+
+# 8080포트가 있다면 톰캣 서버 정상작동, AWS 방화벽 해제하여 브라우저에서 접속확인
+
+============================================================
+
+# 2023-08-09 AWS 관련 수업
+
+## AWS
+- Amazon Web Service의 약자
+- 온라인 도서판매 -> 쇼핑몰 -> 클리우드 서비스로 확장
+- Jeff Bezos 창업
+	- 십억만장자 순위 : https://www.forbes.com/billionaires/
+	- 제프 베조스의 aws 결정 : http://jesusgilhernandez.com/2012/10/18/jeff-bezos-mandate-amazon-and-web-services/
+- EC2 : Elastic Cloud Computer
+
+- On-Premise : 온프레미스환경. 기업이 직접 토지와 시설에 전산 및 서버 인프라를 구축하는 방식
+- On-Demand : 이용자의 필요에 따라 맞춤형으로 즉시 서비스를 제공하는 방식
+- 가상화 기술 : 가상화 기술의 발전으로 간단한 명령으로 가상 서버를 만들어 클라우드 컴퓨팅 서비스 제공 (Virtual Machine, Hypervisor, 전가상화, 반가상화)
+
+- 리전 : AWS 서비스가 위치하고 있는 물리적 장소
+- 가용영역 : AZ Availabailty Zone 실제 위치하는 데이터센터, 테러, 화재, 정전 등의 재해가 발생하더라도 다른 영역에서 사용할 수 있게 물리적으로 각각 떨어져있다.
+
+- AWS 프리티어 : 1년동안 프리티어에 속한 서비스를 무료로 이용할 수 있다. 
+- 프리티어 내용 확인 : https://aws.amazon.com/ko/free/
+- AWS 회원가입 : 해외 결제 가능한 신용카드가 필요
+- AWS 콘솔 : 로그인하여 각종 AWS 서비스들을 이용할 수 있다.
+
+### EC2
+- 인스턴스 시작
+	- 이름 : 인스턴스(가상컴퓨터) 이름 정하여 입력 
+	- OS Image : 운영체제를 선택한다 - 우리는 ubuntu server 20.04 LTS
+	- 인스턴스 유형 : t2.micro (프리티어 사용가능)
+	- 키 페어 : 새 키 페어 생성 > RSE > .pem > 키페어 생성
+		- 다운로드받은 pem파일(비공개키)는 원격 SSH 접속에 필요하니, 잘 보관
+	- 네트워크 설정 : SSH 트래픽 허용 체크
+	- 스토리지 구성 : EBS 저장소를 생성한다 - 우리는 8GiB
+	- 요약에서 정보를 다시 확인한 후
+	- [인스턴스 시작] : 몇 초 후 인스턴스가 생성된다.
+
+### 원격 접속
+- 원격 접속 프로그램 : MobaXterm, Putty 등
+	- https://mobaxterm.mobatek.net/download.html
+	- 무료 설치 버전을 받아 설치
+- Session > SSH(Secure SHell)
+	- Remote host : AWS EC2에서 생성한 public IP
+	- Specify username : (체크) ubuntu (OS별 기본사용자명)
+	- Advanced SSH settings : Use priviate key
+		- EC2 생성시 생성한 키 페어 pem 파일 선
+- Ok 
+	- AWS EC2 인스턴스의 원격 우분투 리눅스 터미널에 접속
+
+### 방화벽 설정 
+- (톰캣 8080번 포트 추가)
+	- 브라우저에서 AWS EC2 콘솔
+	- 네트워크 및 보안 > 보안 그룹 > 인스턴스와 연결된 보안 그룹 ID 선택
+	- 인바운드 규칙 > 인바운드 규칙 편집
+	- 규칙추가 > 포트범위 8080번 / 소스유형 0.0.0.0/0 > 규칙저장
+- 브라우저에서 EC2 퍼블릭ip:8080 으로 톰캣 구동 확인
+
+================================================================================
+오늘 수업 내용을 Review할 수 있는 사이트입니다. 다시 해보고 싶거나, 필요한 분들 참고하세요.
+https://oracledb.expandsource.com/
+
+================================================================================
+VI 치트 시트입니다
+https://vimsheet.com/
+
+================================================================================
+
