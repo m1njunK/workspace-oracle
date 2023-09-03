@@ -1,5 +1,7 @@
 # workspace-oracle
 
+Oracle 데이터베이스를 공부하며 습득한 내용을 정리한 곳입니다.
+
 ## 학습 내용
 
 - Oracle 데이터베이스 설치 및 설정
